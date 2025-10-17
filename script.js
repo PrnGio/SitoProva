@@ -15,14 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach(link => {
         const linkUrl = link.getAttribute('href').split("/").pop();
-        // L'homepage può essere '' o 'index.html'
         if ((currentPageUrl === '' || currentPageUrl === 'index.html') && linkUrl === 'index.html') {
             link.classList.add('active');
         } else if (linkUrl === currentPageUrl && linkUrl !== 'index.html') {
             link.classList.add('active');
         }
     });
-
 
     // --- ANIMAZIONE SEZIONI ON SCROLL ---
     const sections = document.querySelectorAll('.content-section');
@@ -31,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: '0px',
         threshold: 0.1
     };
-
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -40,51 +37,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, observerOptions);
-
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
 
-    // --- ANIMAZIONE CONTATORI NUMERICI (SOLO SE PRESENTI) ---
-    const counterSection = document.querySelector('.stats-counter');
-    if (counterSection) {
-        let countersAnimated = false;
+    // --- LOGICA PER LA LIGHTBOX (NUOVA) ---
+    const lightbox = document.getElementById('image-lightbox');
+    if (lightbox) {
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryImages = document.querySelectorAll('.photo-gallery img');
+        const closeBtn = document.querySelector('.close-lightbox');
 
-        const startCounters = () => {
-            if (countersAnimated) return;
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                counter.innerText = '0';
-                const target = +counter.getAttribute('data-target');
-                const duration = 2000;
-                const stepTime = 20;
-                const totalSteps = duration / stepTime;
-                const increment = target / totalSteps;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        counter.innerText = Math.ceil(current);
-                        setTimeout(updateCounter, stepTime);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCounter();
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                lightbox.style.display = 'block';
+                lightboxImg.src = image.src;
             });
-            countersAnimated = true;
-        };
+        });
 
-        const counterObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startCounters();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        counterObserver.observe(counterSection);
+        const closeModal = () => {
+            lightbox.style.display = 'none';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) { // Chiude solo se si clicca sullo sfondo
+                closeModal();
+            }
+        });
     }
 });
