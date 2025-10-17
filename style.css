@@ -61,7 +61,7 @@ header .container { display: flex; justify-content: space-between; align-items: 
 
 /* --- SEZIONE HERO (SOLO HOMEPAGE) --- */
 #hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('img/home3.jpg	') no-repeat center center/cover;
     color: #fff;
     min-height: 90vh;
     display: flex;
@@ -176,4 +176,53 @@ footer a { color: #fff; text-decoration: underline; }
     .page-header h1 { font-size: 2.2rem; }
     .section-title { font-size: 2.2rem; }
     .stats-counter { flex-direction: column; gap: 40px; }
+}
+
+/* --- INFORMAZIONI DI CONTATTO NELL'HEADER --- */
+/* --- HEADER E NAVIGAZIONE (layout corretto) --- */
+header .container {
+    display: flex;
+    justify-content: space-between; /* Riattiviamo questo per spaziare i gruppi */
+    align-items: center;
+}
+
+.header-left-section {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Spazio tra logo e info */
+}
+
+.header-contact-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: var(--colore-secondario);
+}
+
+.header-contact-info .tagline {
+    font-weight: 600;
+    color: var(--colore-primario);
+}
+
+.header-contact-info a {
+    text-decoration: none;
+    color: var(--colore-secondario);
+    transition: color 0.3s ease;
+}
+
+.header-contact-info a:hover {
+    color: var(--colore-accento);
+}
+
+.header-contact-info i {
+    color: var(--colore-accento);
+    margin-right: 5px;
+}
+
+/* --- Adattamento per il responsive --- */
+@media (max-width: 992px) {
+    .header-contact-info {
+        display: none;
+    }
 }
