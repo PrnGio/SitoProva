@@ -320,3 +320,14 @@ header .container {
     color: #bbb;
     text-decoration: none;
 }
+
+/* --- Stili per i link nella pagina Contatti --- */
+.contact-info p a {
+    text-decoration: none;
+    color: var(--colore-secondario); /* Usa lo stesso grigio scuro dell'header */
+    transition: color 0.3s ease;
+}
+
+.contact-info p a:hover {
+    color: var(--colore-accento); /* Giallo al passaggio del mouse */
+}
