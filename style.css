@@ -139,12 +139,12 @@ header .container { display: flex; justify-content: space-between; align-items: 
 /* Card Lavorazioni e Homepage */
 .grid-layout { 
     display: grid; 
-    /* Questa è la regola base, perfetta per il mobile */
+    /* Questa è la regola DI BASE che useremo per i telefoni */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 30px; 
 }
 
-/* Queste regole si attiveranno SOLO su schermi più grandi di 768px */
+/* Applichiamo le regole per schermi più grandi SOLO se lo schermo è almeno 768px */
 @media (min-width: 768px) {
     .grid-layout.cols-3 { 
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -153,7 +153,6 @@ header .container { display: flex; justify-content: space-between; align-items: 
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
     }
 }
-
 .card {
     background-color: #fff;
     padding: 35px;
