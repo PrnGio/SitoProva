@@ -137,9 +137,23 @@ header .container { display: flex; justify-content: space-between; align-items: 
 .stat-item p { font-size: 1.1rem; color: #555; margin-top: 5px; }
 
 /* Card Lavorazioni e Homepage */
-.grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.grid-layout.cols-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.grid-layout.cols-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+.grid-layout { 
+    display: grid; 
+    /* Questa è la regola base, perfetta per il mobile */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+}
+
+/* Queste regole si attiveranno SOLO su schermi più grandi di 768px */
+@media (min-width: 768px) {
+    .grid-layout.cols-3 { 
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    }
+    .grid-layout.cols-2 { 
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    }
+}
+
 .card {
     background-color: #fff;
     padding: 35px;
@@ -150,6 +164,7 @@ header .container { display: flex; justify-content: space-between; align-items: 
     display: flex;
     flex-direction: column;
 }
+
 .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); }
 .card-icon { font-size: 3rem; color: var(--colore-accento); margin-bottom: 20px; }
 .card-link { margin-top: auto; padding-top: 15px; text-decoration: none; color: var(--colore-secondario); font-weight: 600; transition: color 0.3s; }
